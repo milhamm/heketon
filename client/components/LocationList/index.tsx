@@ -1,12 +1,17 @@
 import React from 'react';
 
+type LocationListTypes = {
+  places: Array<any>;
+  className?: string;
+};
+
 const LocationItem = ({ name }) => (
   <div className='w-full px-3 py-4 rounded-lg hover:bg-gray-100 cursor-pointer'>
     <span className='text-sm'>{name}</span>
   </div>
 );
 
-const LocationList = ({ places, className }) => {
+const LocationList = ({ places, className }: LocationListTypes) => {
   return (
     <div
       className={`${className} ${
