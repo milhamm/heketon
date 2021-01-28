@@ -12,7 +12,7 @@ const Button = ({ className, type, icon, children }: ButtonProps) => {
     type == 'primary'
       ? 'bg-primary'
       : type === 'secondary'
-      ? 'border-primary border-2 text-primary'
+      ? 'border-primary border-2 text-primary hover:bg-primary hover:text-white transition-all'
       : 'bg-white';
 
   const buttonClassname = `${

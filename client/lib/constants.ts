@@ -43,3 +43,37 @@ export const benefit = [
     caption: 'Pilih tes yang diinginkan, PCR ataupun Rapid',
   },
 ];
+
+export const mockgeoJSON = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'Point',
+        coordinates: [107.65640258789062, -6.965959973420071],
+      },
+    },
+    {
+      type: 'Feature',
+      properties: {
+        'marker-color': '#af4141',
+        'marker-size': 'medium',
+        'marker-symbol': '',
+      },
+      geometry: {
+        type: 'Point',
+        coordinates: [107.62825012207031, -6.936310440056612],
+      },
+    },
+    {
+      type: 'Feature',
+      properties: {},
+      geometry: {
+        type: 'Point',
+        coordinates: [107.56851196289062, -6.958121772992557],
+      },
+    },
+  ],
+};

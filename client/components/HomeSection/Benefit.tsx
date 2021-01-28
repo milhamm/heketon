@@ -3,13 +3,13 @@ import Image from 'next/image';
 import { benefit } from '@lib/constants';
 
 const BenefitItems = ({ image, title, caption }) => (
-  <div className='flex-1 mx-6 flex flex-row lg:flex-col items-center justify-between lg:justify-center mb-8'>
+  <div className='flex-1 px-3 lg:px-8 flex flex-row lg:flex-col items-center justify-between lg:justify-center mb-8'>
     <Image src={image} width={135} height={135} />
     <div className='ml-3 lg:ml-0'>
       <h4 className='font-bold mt-0 lg:mt-6 text-left lg:text-center '>
         {title}
       </h4>
-      <p className='mt-3 text-left lg:text-center  w-64'>{caption}</p>
+      <p className='mt-3 text-left lg:text-center w-auto lg:w-64'>{caption}</p>
     </div>
   </div>
 );
