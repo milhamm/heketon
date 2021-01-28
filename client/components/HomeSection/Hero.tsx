@@ -3,7 +3,7 @@ import Image from 'next/image';
 import TextInput from '@components/Form/TextInput';
 import Button from '@components/Button';
 import LocationList from '@components/LocationList';
-import { useGeocode } from 'context/geocode';
+import useGeocode from 'hooks/useGeocode';
 
 const Hero = () => {
   const { places, searchLocations } = useGeocode();
