@@ -2,7 +2,6 @@ import useLocation from 'hooks/useLocation';
 import Head from 'next/head';
 import map from '@lib/mapbox';
 import '../styles/globals.css';
-import { GeocodeProvider } from 'context/geocode';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -18,9 +17,7 @@ function MyApp({ Component, pageProps }) {
           rel='stylesheet'
         />
       </Head>
-      <GeocodeProvider>
-        <Component {...pageProps} />
-      </GeocodeProvider>
+      <Component {...pageProps} />
     </>
   );
 }
