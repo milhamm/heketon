@@ -1,0 +1,12 @@
+<svg width="135" height="135" viewBox="0 0 135 135" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="135" height="135" fill="white"/>
+<circle cx="67" cy="68" r="58" fill="#AADAF1"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M67.4754 10.0019V68L23.9877 29.0899C34.6005 17.3655 49.9401 10 67 10C67.1586 10 67.3171 10.0006 67.4754 10.0019Z" fill="#F7D167"/>
+<rect x="43.5484" y="43.8541" width="32.9441" height="2.85246" transform="rotate(42.0275 43.5484 43.8541)" fill="#191919"/>
+<rect x="68" y="29" width="39" height="2" transform="rotate(90 68 29)" fill="#191919"/>
+<rect x="119" y="66" width="6" height="4" fill="#191919"/>
+<rect x="9" y="66" width="6" height="4" fill="#191919"/>
+<rect x="65" y="126" width="6" height="4" transform="rotate(-90 65 126)" fill="#191919"/>
+<rect x="65" y="16" width="6" height="4" transform="rotate(-90 65 16)" fill="#191919"/>
+<circle cx="67" cy="68" r="57.5" stroke="#191919"/>
+</svg>
