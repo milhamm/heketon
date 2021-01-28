@@ -3,6 +3,7 @@ import React from 'react';
 type TextInputTypes = {
   type: 'text' | 'email' | 'password';
   className?: string;
+  placeholder?: string;
 };
 
 const TextInput = ({ type, className, ...rest }: TextInputTypes) => {
