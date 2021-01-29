@@ -3,6 +3,7 @@ import { search } from '@lib/utils';
 
 const useGeocode = () => {
   const [places, setPlaces] = useState(null);
+  const [pickedLocation, setPickedLocation] = useState(null);
 
   const searchLocations = async (e) => {
     if (e.target.value !== '') {
@@ -17,9 +18,16 @@ const useGeocode = () => {
     }
   };
 
+  const setPickLocation = async (place) => {
+    await setPickedLocation(place);
+    await setPlaces(null);
+  };
+
   return {
     places,
+    pickedLocation,
     searchLocations,
+    setPickLocation,
   };
 };
 

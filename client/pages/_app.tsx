@@ -1,6 +1,4 @@
-import useLocation from 'hooks/useLocation';
 import Head from 'next/head';
-import map from '@lib/mapbox';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {

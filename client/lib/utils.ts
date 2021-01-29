@@ -3,24 +3,20 @@ import axios from 'axios';
 const resources = {};
 
 const makeRequestCreator = () => {
-  let cancel;
+  let token;
 
   return async (query) => {
-    // Check if we made a request
-    if (cancel) {
-      // Cancel the previous request before making a new request
-      cancel.cancel();
+    if (token) {
+      token.cancel();
     }
-    // Create a new CancelToken
-    cancel = axios.CancelToken.source();
+    token = axios.CancelToken.source();
     try {
       if (resources[query]) {
-        // Return result if it exists
         return resources[query];
       }
 
       const res = await axios(query, {
-        cancelToken: cancel.token,
+        cancelToken: token.token,
       });
       const result = res.data;
       resources[query] = result;

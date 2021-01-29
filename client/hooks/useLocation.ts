@@ -13,7 +13,7 @@ const useLocation = () => {
   };
 
   const onError = () => {
-    console.log('Unable to retreive Location');
+    // console.log('Unable to retreive Location');
   };
 
   useEffect(() => {

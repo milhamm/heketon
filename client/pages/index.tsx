@@ -4,8 +4,12 @@ import Layout from '@components/Layout';
 import HomeSection from '@components/HomeSection';
 
 export default function Home() {
+  const meta = {
+    title: 'Home',
+  };
+
   return (
-    <Layout>
+    <Layout meta={meta}>
       <HomeSection />
     </Layout>
   );
