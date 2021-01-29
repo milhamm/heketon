@@ -7,6 +7,7 @@ import { mockgeoJSON } from '@lib/constants';
 import { addMarkers, draggableMarker, flyTo, initializeMap } from '@lib/mapbox';
 import useLocation from '@hooks/useLocation';
 import useGeocode from '@hooks/useGeocode';
+import FaskesItem from './FaskesItem';
 
 const FaskesSection = () => {
   const [search, setSearch] = useState('');
@@ -50,14 +51,21 @@ const FaskesSection = () => {
   }, [pickedLocation]);
 
   return (
-    <>
-      <div ref={mapContainerRef} className='w-full h-96'></div>
-      <div className='container mx-auto h-96 relative z-20 px-3 lg:px-0'>
-        <div
-          className='relative max-w-3xl w-full mx-auto'
-          style={{ transform: 'translateY(-50%)' }}
-        >
-          <div className='bg-white shadow-lg pr-4 py-3  rounded-lg flex'>
+    <div className='h-full flex flex-col lg:flex-row lg:container mx-auto'>
+      <div className='flex-1 order-first lg:order-last lg:ml-24'>
+        <div className='h-72 lg:h-map lg:top-16 lg:sticky flex items-center justify-center'>
+          <div
+            ref={mapContainerRef}
+            className='w-full h-full lg:h-4/5 flex-1 rounded-lg shadow-lg'
+          ></div>
+        </div>
+      </div>
+      <div className='h-full relative px-3 lg:py-24 lg:px-0 flex-1 bg-white flex flex-col'>
+        <h2 className='mb-12 font-bold text-3xl order-2 lg:order-1 lg:mb-8'>
+          Faskes di sekitarmu
+        </h2>
+        <div className='relative mb-6 lg:mb-24 z-20 order-1 lg:order-2'>
+          <div className='bg-white shadow-lg pr-4 py-3 rounded-lg flex transform lg:transform-none -translate-y-1/2'>
             <TextInput
               type='text'
               placeholder='Masukan Lokasi'
@@ -79,8 +87,14 @@ const FaskesSection = () => {
             places={places}
           />
         </div>
+        <div className='order-3 '>
+          <FaskesItem />
+          <FaskesItem />
+          <FaskesItem />
+          <FaskesItem />
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

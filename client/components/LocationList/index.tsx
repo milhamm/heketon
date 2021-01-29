@@ -24,7 +24,7 @@ const LocationList = ({
     <div
       className={`${className} ${
         !places && 'hidden'
-      } bg-white shadow-lg absolute w-full max-w-3xl mt-2 rounded-lg px-3 py-3 z-10 max-h-64 overflow-auto`}
+      } bg-white shadow-lg absolute w-full mt-2 rounded-lg px-3 py-3 z-10 max-h-64 overflow-auto`}
     >
       {places &&
         places.map((place) => (
