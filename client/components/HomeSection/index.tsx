@@ -1,5 +1,6 @@
 import React from 'react';
 import Benefit from './Benefit';
+import CTA from './CTA';
 import Disclaimer from './Disclaimer';
 import Flow from './Flow';
 import Hero from './Hero';
@@ -11,6 +12,7 @@ const HomeSection = () => {
       <Flow />
       <Benefit />
       <Disclaimer />
+      <CTA />
     </div>
   );
 };
