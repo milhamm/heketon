@@ -62,7 +62,7 @@ const FaskesSection = () => {
       </div>
       <div className='h-full relative px-3 lg:py-24 lg:px-0 flex-1 bg-white flex flex-col'>
         <h2 className='mb-12 font-bold text-3xl order-2 lg:order-1 lg:mb-8'>
-          Faskes di sekitarmu
+          Cari lokasi tes di sekitarmu
         </h2>
         <div className='relative mb-6 lg:mb-24 z-20 order-1 lg:order-2'>
           <div className='bg-white shadow-lg pr-4 py-3 rounded-lg flex transform lg:transform-none -translate-y-1/2'>

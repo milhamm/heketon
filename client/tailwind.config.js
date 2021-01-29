@@ -9,12 +9,14 @@ module.exports = {
     extend: {
       colors: {
         primary: '#0097F7',
+        cheese: '#F7D167',
       },
       borderColor: {
         primary: '#0097F7',
       },
       textColor: {
         primary: '#0097F7',
+        disclaimer: '#FF3274',
       },
       height: {
         map: 'calc(100vh - 4rem)',
@@ -25,6 +27,12 @@ module.exports = {
         '1/2': '50%',
         '3/4': '75%',
         full: '100%',
+      },
+      backgroundImage: {
+        disclaimer: "url('/images/disclaimer.png')",
+      },
+      backgroundPosition: {
+        'bottom-right-4': 'right 1rem bottom 1rem',
       },
     },
   },
