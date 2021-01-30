@@ -221,7 +221,7 @@ const Navbar = () => {
               </div>
             ) : (
               <div className='w-full mt-3'>
-                <Link href='/Login'>
+                <Link href='/login'>
                   <a>
                     <div className='py-4 px-6 rounded cursor-pointer hover:bg-gray-100 text-primary'>
                       Login

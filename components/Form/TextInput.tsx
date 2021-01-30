@@ -19,7 +19,7 @@ const TextInput = React.forwardRef<
       name={name}
       type={type}
       className={inputClassname}
-      autoFocus
+      autoComplete='false'
       value={value}
       {...rest}
     />
