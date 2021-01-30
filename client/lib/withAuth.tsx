@@ -1,14 +1,19 @@
 import { useAuth } from 'context/authentication';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 const withAuth = (Component) => ({ ...props }) => {
   const router = useRouter();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isLoading } = useAuth();
+
+  useEffect(() => {
+    if (!isLoggedIn && !isLoading) {
+      router.push('/login');
+    }
+  }, [isLoggedIn]);
 
   if (!isLoggedIn) {
-    router.push('/login');
-    return null;
+    return <div className='bg-white'></div>;
   }
 
   return <Component {...props} />;

@@ -12,7 +12,7 @@ const meta = {
 };
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, error, isLoading } = useAuth();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
@@ -27,12 +27,19 @@ const Login = () => {
       <p className='my-0 text-gray-400'>
         Silahkan Login terlebih dahulu sebelum melanjutkan
       </p>
+
       <form onSubmit={handleSubmit(onSubmit)}>
+        {error && (
+          <div className='bg-red-400 px-4 py-2 rounded text-white mt-8'>
+            {error}
+          </div>
+        )}
+
         <TextInput
           ref={register({ required: true })}
           name='email'
           type='text'
-          className='border px-6 mt-8'
+          className='border px-6 mt-3'
           placeholder='email'
         />
         <TextInput
@@ -42,7 +49,12 @@ const Login = () => {
           className='border mt-3 px-6'
           placeholder='password'
         />
-        <Button htmlType='submit' type='primary' className='w-full mt-3'>
+        <Button
+          htmlType='submit'
+          type='primary'
+          className='w-full mt-3'
+          loading={isLoading}
+        >
           Login
         </Button>
       </form>

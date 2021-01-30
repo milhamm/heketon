@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import SEO from '@components/SEO';
+import { useRouter } from 'next/router';
+import { useAuth } from '@context/authentication';
 
 const AuthLayout = ({ children, meta }) => {
+  const { isLoggedIn } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.push('/');
+    }
+  }, [isLoggedIn]);
+
   return (
     <>
       <SEO meta={meta} />

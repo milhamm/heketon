@@ -8,6 +8,7 @@ type ButtonProps = {
   children?: React.ReactNode;
   htmlType?: 'button' | 'submit';
   loading?: boolean;
+  onClick?: Function;
 };
 
 const Button = ({
@@ -17,6 +18,7 @@ const Button = ({
   children,
   htmlType = 'button',
   loading,
+  onClick,
 }: ButtonProps) => {
   const buttonType =
     type == 'primary'
@@ -32,7 +34,12 @@ const Button = ({
   } ${buttonType} rounded-lg py-2 px-6 font-primary`;
 
   return (
-    <button type={htmlType} className={buttonClassname} disabled={loading}>
+    <button
+      type={htmlType}
+      className={buttonClassname}
+      disabled={loading}
+      onClick={onClick}
+    >
       {icon && <span className='flex justify-center items-center'>{icon}</span>}
       {children && <span>{!loading ? children : <Spinner />}</span>}
     </button>
