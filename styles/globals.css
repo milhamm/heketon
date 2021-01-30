@@ -45,3 +45,53 @@ a {
   border-radius: 3px;
   border: none;
 }
+
+.DateInput_input {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #484848;
+  background-color: #fff;
+  width: 100%;
+  padding: 6px;
+  border: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-radius: 8px;
+}
+
+.SingleDatePickerInput__withBorder {
+  border-radius: 6px;
+  border: 1px solid #dbdbdb;
+}
+
+.CalendarDay__default {
+  border: 1px solid transparent;
+  color: #484848;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.CalendarDay__default:hover {
+  background: #e4e7e7;
+  border: 1px solid transparent;
+  color: inherit;
+}
+
+.CalendarDay__blocked_out_of_range,
+.CalendarDay__blocked_out_of_range:active,
+.CalendarDay__blocked_out_of_range:hover {
+  background: #fff;
+  border: 1px solid transparent;
+  color: #cacccd;
+}
+
+.CalendarDay__selected,
+.CalendarDay__selected:active,
+.CalendarDay__selected:hover {
+  background: #0097f7;
+  border: 1px double transparent;
+  color: #fff;
+}

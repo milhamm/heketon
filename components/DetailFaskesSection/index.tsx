@@ -7,11 +7,13 @@ import {
   SingleDatePicker,
   DayPickerRangeController,
 } from 'react-dates';
+import { data } from 'autoprefixer';
 
 const DetailFaskesSection = () => {
   const mapRef = useRef(null);
   const mapContainerRef = useRef(null);
   const [focused, setFocused] = useState(false);
+  const [date, setDate] = useState(null);
 
   useEffect(() => {
     const map = initializeMap(mapContainerRef, {});
@@ -85,28 +87,41 @@ const DetailFaskesSection = () => {
               Kamu dapat menjadwalkan tes di Faskes ini secara online
             </p>
             <div className='flex flex-col mt-12'>
-              <div className='flex justify-between text-right'>
-                <span className='text-gray-400'>Buka:</span>
-                <div className='ml-4'>
+              <div className='flex justify-between'>
+                <span className='flex-1 text-gray-400'>Buka:</span>
+                <div className='ml-4 flex-1'>
                   <p>Senin-Jumat</p>
                   <p>10.00 - 15.00</p>
                 </div>
               </div>
-              <div className='flex justify-between text-right mt-6'>
+              <div className='flex justify-between mt-4'>
                 <span className='text-gray-400'>Jumlah Orang:</span>
+              </div>
+              <div className='flex justify-between mt-6'>
+                <span className='text-gray-400 flex-1'>Tanggal:</span>
+                <div className='ml-4 flex-1'>
+                  <SingleDatePicker
+                    block
+                    date={date}
+                    onDateChange={(date) => {
+                      setDate(date);
+                    }}
+                    hideKeyboardShortcutsPanel
+                    focused={focused}
+                    numberOfMonths={1}
+                    anchorDirection='right'
+                    onFocusChange={({ focused }) => {
+                      setFocused(focused);
+                    }}
+                    displayFormat='DD MMM YYYY'
+                  />
+                </div>
               </div>
             </div>
             <Button type='primary' className='w-full mt-6'>
-              Cari Jadwal
+              Buat Jadwal
             </Button>
           </div>
-          <SingleDatePicker
-            focused={focused}
-            numberOfMonths={1}
-            onFocusChange={({ focused }) => {
-              setFocused(focused);
-            }}
-          />
         </div>
       </div>
     </>

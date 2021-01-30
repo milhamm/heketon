@@ -77,3 +77,22 @@ export const mockgeoJSON = {
     },
   ],
 };
+
+export const toGeoJSON = (data) => {
+  return {
+    type: 'FeatureCollection',
+    features: data.map(({ longitude, latitude, name, address }) => ({
+      type: 'Feature',
+      properties: {
+        description: `<b>${name}</b><p>${address}</p>`,
+      },
+      geometry: {
+        type: 'Point',
+        coordinates: [
+          Number.parseFloat(longitude),
+          Number.parseFloat(latitude),
+        ],
+      },
+    })),
+  };
+};

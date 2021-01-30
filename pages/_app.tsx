@@ -1,8 +1,8 @@
 import { AuthenticationProvider } from 'context/authentication';
 import Head from 'next/head';
 import 'react-dates/initialize';
-import '../styles/globals.css';
 import 'react-dates/lib/css/_datepicker.css';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
   return (

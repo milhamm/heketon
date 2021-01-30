@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import TextInput from '@components/Form/TextInput';
 import Button from '@components/Button';
 import LocationList from '@components/LocationList';
-import { mockgeoJSON } from '@lib/constants';
+import { mockgeoJSON, toGeoJSON } from '@lib/constants';
 import { addMarkers, draggableMarker, flyTo, initializeMap } from '@lib/mapbox';
 import useLocation from '@hooks/useLocation';
 import useGeocode from '@hooks/useGeocode';
@@ -31,12 +31,14 @@ const FaskesSection = () => {
   } = useGeocode();
 
   useEffect(() => {
-    const getHospital = async (initialCenter) => {
+    const getHospital = async (initialCenter, map) => {
       try {
         const response = await api.get(
           `/hospital/nearest?longitude=${initialCenter.longitude}&latitude=${initialCenter.latitude}`
         );
         setHospital(response.data.data);
+        const data = toGeoJSON(response.data.data);
+        addMarkers(map, data);
       } catch (error) {
         console.log(error.response);
       }
@@ -59,17 +61,15 @@ const FaskesSection = () => {
     }
 
     const map = initializeMap(mapContainerRef, initialCenter);
-    const marker = draggableMarker(map, initialCenter);
-
-    addMarkers(map, mockgeoJSON);
-    getHospital(initialCenter);
+    draggableMarker(map, initialCenter);
+    getHospital(initialCenter, map);
 
     mapRef.current = map;
-    markerRef.current = marker;
+    // markerRef.current = marker;
 
     return () => {
       map.remove();
-      marker.remove();
+      // marker.remove();
     };
   }, [router]);
 
@@ -77,11 +77,7 @@ const FaskesSection = () => {
     if (mapRef && pickedLocation && pickedLocation.place_name) {
       const [long, lat] = pickedLocation.center;
       setSearch(pickedLocation.place_name);
-      flyTo(
-        mapRef.current,
-        pickedLocation.geometry.coordinates,
-        markerRef.current
-      );
+      flyTo(mapRef.current, pickedLocation.geometry.coordinates);
       router.replace(
         `/faskes?lat=${lat}&long=${long}&search=${pickedLocation.place_name}`
       );
@@ -135,22 +131,40 @@ const FaskesSection = () => {
               icon={<Image src='/icons/search.svg' width={18} height={18} />}
             />
           </div>
+
           <LocationList
             pickLocation={onPick}
             className='mx-auto'
             places={places}
           />
         </div>
-        <div className='order-3 '>
-          {hospital &&
-            hospital.map(({ name, address, distance, thumbnail }) => (
-              <FaskesItem
-                name={name}
-                address={address}
-                distance={distance}
-                thumbnail={thumbnail}
+        <div className='order-3'>
+          {hospital && hospital.length > 0 ? (
+            hospital.map(
+              ({ id, name, facilies, address, distance, thumbnail }) => (
+                <FaskesItem
+                  key={id}
+                  id={id}
+                  name={name}
+                  address={address}
+                  facilies={facilies}
+                  distance={distance}
+                  thumbnail={thumbnail}
+                />
+              )
+            )
+          ) : (
+            <div className='w-full flex flex-col items-center justify-center'>
+              <Image
+                src='/images/hanzo_nonburik.svg'
+                width={241}
+                height={218}
               />
-            ))}
+              <p className='mt-6 text-gray-400'>
+                Wah lokasi yang kamu cari tidak ditemukan
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

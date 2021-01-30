@@ -19,12 +19,12 @@ const Footer = () => {
             <span className='text-white'>Cari</span>
           </div>
           <div className='py-1 cursor-pointer'>
-            <span className='text-white'>Kami</span>
+            <span className='text-white'>FAQ</span>
           </div>
         </div>
         <div className='flex-1 ml-0 lg:ml-8'>
           <div className='py-1 cursor-pointer'>
-            <span className='text-white'>FAQ</span>
+            <span className='text-white'>Tentang Kami</span>
           </div>
         </div>
       </div>
