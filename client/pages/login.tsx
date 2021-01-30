@@ -1,28 +1,58 @@
+import Link from 'next/link';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+
 import Button from '@components/Button';
 import TextInput from '@components/Form/TextInput';
-import React from 'react';
+import AuthLayout from '@components/Layout/AuthLayout';
+import { useAuth } from '@context/authentication';
+
+const meta = {
+  title: 'Login',
+};
 
 const Login = () => {
+  const { login } = useAuth();
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    login(data);
+  };
+
   return (
-    <div className='h-screen flex items-center justify-center bg-gray-100'>
-      <div className='bg-white max-w-5xl w-full grid grid-rows-1 grid-cols-6 shadow-xl mx-auto rounded-lg'>
-        <div className='col-span-2 h-full bg-primary rounded-l-lg'></div>
-        <div className='col-span-4 flex flex-col px-24 py-32 justify-center items-center'>
-          <h2 className='font-bold mb-8'>
-            Login to Tescov.<span className='text-primary'>id</span>
-          </h2>
-          <TextInput type='text' className='border' placeholder='email' />
-          <TextInput
-            type='password'
-            className='border mt-3'
-            placeholder='password'
-          />
-          <Button type='primary' className='w-full mt-3 '>
-            Login
-          </Button>
-        </div>
+    <AuthLayout meta={meta}>
+      <h4 className='font-bold text-left text-gray-700 w-full text-xl mb-2'>
+        Login
+      </h4>
+      <p className='my-0 text-gray-400'>
+        Silahkan Login terlebih dahulu sebelum melanjutkan
+      </p>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <TextInput
+          ref={register({ required: true })}
+          name='email'
+          type='text'
+          className='border px-6 mt-8'
+          placeholder='email'
+        />
+        <TextInput
+          ref={register({ required: true })}
+          type='password'
+          name='password'
+          className='border mt-3 px-6'
+          placeholder='password'
+        />
+        <Button htmlType='submit' type='primary' className='w-full mt-3'>
+          Login
+        </Button>
+      </form>
+      <div className='mt-8 text-right'>
+        {`Belum punya akun? `}
+        <Link href='/register'>
+          <a className='text-primary underline'>Daftar</a>
+        </Link>
       </div>
-    </div>
+    </AuthLayout>
   );
 };
 

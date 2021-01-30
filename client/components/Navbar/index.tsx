@@ -22,7 +22,7 @@ const NavItems = ({ children, link }: NavItems) => {
 
 const Navbar = () => {
   return (
-    <div className='sticky top-0 w-full bg-white shadow-lg z-40 h-16 px-3'>
+    <div className='sticky top-0 w-full bg-white shadow-lg z-40 h-16 px-6'>
       <div className='container py-3 flex mx-auto h-full'>
         <div className='flex-none flex items-center justify-center'>
           <Link href='/'>
@@ -39,7 +39,7 @@ const Navbar = () => {
           <Link href='/login'>
             <a>
               <div className='ml-4 ' style={{ width: '113px' }}>
-                <Button className='w-full' type='secondary'>
+                <Button htmlType='button' className='w-full' type='secondary'>
                   Login
                 </Button>
               </div>

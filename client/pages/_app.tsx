@@ -1,3 +1,4 @@
+import { AuthenticationProvider } from 'context/authentication';
 import Head from 'next/head';
 import '../styles/globals.css';
 
@@ -15,7 +16,9 @@ function MyApp({ Component, pageProps }) {
           rel='stylesheet'
         />
       </Head>
-      <Component {...pageProps} />
+      <AuthenticationProvider>
+        <Component {...pageProps} />
+      </AuthenticationProvider>
     </>
   );
 }

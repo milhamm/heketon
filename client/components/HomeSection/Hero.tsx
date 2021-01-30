@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import TextInput from '@components/Form/TextInput';
 import Button from '@components/Button';
@@ -6,7 +7,28 @@ import LocationList from '@components/LocationList';
 import useGeocode from '@hooks/useGeocode';
 
 const Hero = () => {
-  const { places, searchLocations } = useGeocode();
+  const [search, setSearch] = useState('');
+  const router = useRouter();
+  const {
+    places,
+    searchLocations,
+    pickedLocation,
+    setPickLocation,
+  } = useGeocode();
+
+  const onPick = (place) => {
+    setPickLocation(place);
+  };
+
+  useEffect(() => {
+    if (pickedLocation && pickedLocation.place_name) {
+      const [long, lat] = pickedLocation.center;
+      setSearch(pickedLocation.place_name);
+      router.push(
+        `/faskes?lat=${lat}&long=${long}&search=${pickedLocation.place_name}`
+      );
+    }
+  }, [pickedLocation]);
 
   return (
     <div className='h-full flex pt-24 gap-8 mb-16 lg:mb-32'>
@@ -19,20 +41,35 @@ const Hero = () => {
           PCR-SWAB terdekat dari tempatmu
         </p>
         <div className='relative'>
-          <div className='bg-white shadow-lg max-w-3xl w-full pr-4 py-3 mx-auto rounded-lg flex mt-9'>
+          <div className='bg-white shadow-lg max-w-3xl w-full pr-4 pl-6 py-3 mx-auto rounded-lg flex mt-9'>
             <TextInput
               className='flex-grow'
               type='text'
               placeholder='Masukan Lokasimu'
-              onChange={searchLocations}
+              onChange={(e) => {
+                searchLocations(e.target.value);
+                setSearch(e.target.value);
+              }}
+              value={search}
             />
+            {search && search.length > 0 && (
+              <span
+                className='h-full my-auto px-3 cursor-pointer hover:bg-gray-200 mx-2 transition-all rounded'
+                onClick={() => {
+                  searchLocations('');
+                  setSearch('');
+                }}
+              >
+                X
+              </span>
+            )}
             <Button
               className='flex-grow-0 w-16 ml-4'
               type='primary'
               icon={<Image src='/icons/search.svg' width={32} height={32} />}
             />
           </div>
-          <LocationList places={places} />
+          <LocationList places={places} pickLocation={onPick} />
         </div>
       </div>
       <div className='hidden lg:flex-1 lg:flex justify-center items-center '>

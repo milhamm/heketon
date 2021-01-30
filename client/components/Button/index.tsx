@@ -1,3 +1,4 @@
+import Spinner from '@components/Spinner';
 import React from 'react';
 
 type ButtonProps = {
@@ -5,12 +6,23 @@ type ButtonProps = {
   icon?: React.ReactNode;
   className?: string;
   children?: React.ReactNode;
+  htmlType?: 'button' | 'submit';
+  loading?: boolean;
 };
 
-const Button = ({ className, type, icon, children }: ButtonProps) => {
+const Button = ({
+  className,
+  type,
+  icon,
+  children,
+  htmlType = 'button',
+  loading,
+}: ButtonProps) => {
   const buttonType =
     type == 'primary'
-      ? 'bg-primary text-white'
+      ? `${
+          !loading ? 'bg-primary' : 'bg-gray-300 cursor-not-allowed'
+        } text-white`
       : type === 'secondary'
       ? 'border-primary border text-primary hover:bg-primary hover:text-white transition-all'
       : 'bg-white';
@@ -20,9 +32,9 @@ const Button = ({ className, type, icon, children }: ButtonProps) => {
   } ${buttonType} rounded-lg py-2 px-6 font-primary`;
 
   return (
-    <button className={buttonClassname}>
+    <button type={htmlType} className={buttonClassname} disabled={loading}>
       {icon && <span className='flex justify-center items-center'>{icon}</span>}
-      {children && <span>{children}</span>}
+      {children && <span>{!loading ? children : <Spinner />}</span>}
     </button>
   );
 };

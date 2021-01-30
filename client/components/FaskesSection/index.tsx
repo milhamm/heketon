@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import TextInput from '@components/Form/TextInput';
 import Button from '@components/Button';
 import LocationList from '@components/LocationList';
@@ -10,6 +11,8 @@ import useGeocode from '@hooks/useGeocode';
 import FaskesItem from './FaskesItem';
 
 const FaskesSection = () => {
+  const router = useRouter();
+
   const [search, setSearch] = useState('');
   const mapRef = useRef(null);
   const markerRef = useRef(null);
@@ -25,8 +28,21 @@ const FaskesSection = () => {
   } = useGeocode();
 
   useEffect(() => {
-    const map = initializeMap(mapContainerRef, {});
-    const marker = draggableMarker(map, location);
+    let initialCenter = {};
+
+    if (router.query && router.query.lat && router.query.long) {
+      initialCenter = {
+        latitude: router.query.lat,
+        longitude: router.query.long,
+      };
+    }
+
+    if (router.query && router.query.search) {
+      setSearch(`${router.query.search}`);
+    }
+
+    const map = initializeMap(mapContainerRef, initialCenter);
+    const marker = draggableMarker(map, initialCenter);
 
     addMarkers(map, mockgeoJSON);
 
@@ -37,18 +53,26 @@ const FaskesSection = () => {
       map.remove();
       marker.remove();
     };
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     if (mapRef && pickedLocation && pickedLocation.place_name) {
+      const [long, lat] = pickedLocation.center;
       setSearch(pickedLocation.place_name);
       flyTo(
         mapRef.current,
         pickedLocation.geometry.coordinates,
         markerRef.current
       );
+      router.replace(
+        `/faskes?lat=${lat}&long=${long}&search=${pickedLocation.place_name}`
+      );
     }
   }, [pickedLocation]);
+
+  const onPick = (place) => {
+    setPickLocation(place);
+  };
 
   return (
     <div className='h-full flex flex-col lg:flex-row lg:container mx-auto'>
@@ -65,16 +89,28 @@ const FaskesSection = () => {
           Cari lokasi tes di sekitarmu
         </h2>
         <div className='relative mb-6 lg:mb-24 z-20 order-1 lg:order-2'>
-          <div className='bg-white shadow-lg pr-4 py-3 rounded-lg flex transform lg:transform-none -translate-y-1/2'>
+          <div className='bg-white shadow-lg pr-4 pl-6 py-3 rounded-lg flex transform lg:transform-none -translate-y-1/2'>
             <TextInput
               type='text'
               placeholder='Masukan Lokasi'
               onChange={(e) => {
-                searchLocations(e);
+                searchLocations(e.target.value);
                 setSearch(e.target.value);
               }}
               value={search}
             />
+            {search && search.length > 0 && (
+              <span
+                className='h-full my-auto px-3 cursor-pointer hover:bg-gray-200 mx-2 transition-all rounded'
+                onClick={() => {
+                  searchLocations('');
+                  setSearch('');
+                }}
+              >
+                X
+              </span>
+            )}
+
             <Button
               type='primary'
               className='text-white font-bold'
@@ -82,7 +118,7 @@ const FaskesSection = () => {
             />
           </div>
           <LocationList
-            pickLocation={setPickLocation}
+            pickLocation={onPick}
             className='mx-auto'
             places={places}
           />

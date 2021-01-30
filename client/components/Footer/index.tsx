@@ -26,12 +26,6 @@ const Footer = () => {
           <div className='py-1 cursor-pointer'>
             <span className='text-white'>FAQ</span>
           </div>
-          <div className='py-1 cursor-pointer'>
-            <span className='text-white'>Terms & Condition</span>
-          </div>
-        </div>
-        <div className='flex-1'>
-          <Button>Masukan</Button>
         </div>
       </div>
     </div>

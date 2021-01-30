@@ -5,24 +5,25 @@ type TextInputTypes = {
   className?: string;
   placeholder?: string;
   value?: any;
+  name?: string;
 };
 
-const TextInput = ({
-  type,
-  className,
-  value,
-  ...rest
-}: TextInputTypes & Record<string, any>) => {
-  const inputClassname = `${className} w-full bg-white px-6 py-3 rounded-lg focus:outline-none`;
+const TextInput = React.forwardRef<
+  HTMLInputElement,
+  TextInputTypes & Record<string, any>
+>(({ type, className, value, name, ...rest }, ref) => {
+  const inputClassname = `${className} w-full bg-white py-3 rounded-lg focus:outline-none`;
   return (
     <input
+      ref={ref}
+      name={name}
       type={type}
-      {...rest}
       className={inputClassname}
       autoFocus
       value={value}
+      {...rest}
     />
   );
-};
+});
 
 export default TextInput;
