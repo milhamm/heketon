@@ -8,7 +8,7 @@ type ButtonProps = {
   children?: React.ReactNode;
   htmlType?: 'button' | 'submit';
   loading?: boolean;
-  onClick?: Function;
+  onClick?: any;
 };
 
 const Button = ({
