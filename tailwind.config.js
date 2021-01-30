@@ -34,6 +34,9 @@ module.exports = {
       backgroundPosition: {
         'bottom-right-4': 'right 1rem bottom 1rem',
       },
+      flex: {
+        2: '1 1 50%',
+      },
     },
   },
   variants: {

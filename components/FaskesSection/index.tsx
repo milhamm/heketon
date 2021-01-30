@@ -9,11 +9,14 @@ import { addMarkers, draggableMarker, flyTo, initializeMap } from '@lib/mapbox';
 import useLocation from '@hooks/useLocation';
 import useGeocode from '@hooks/useGeocode';
 import FaskesItem from './FaskesItem';
+import api from '@lib/api';
 
 const FaskesSection = () => {
   const router = useRouter();
 
   const [search, setSearch] = useState('');
+  const [hospital, setHospital] = useState(null);
+
   const mapRef = useRef(null);
   const markerRef = useRef(null);
   const mapContainerRef = useRef(null);
@@ -28,12 +31,26 @@ const FaskesSection = () => {
   } = useGeocode();
 
   useEffect(() => {
-    let initialCenter = {};
+    const getHospital = async (initialCenter) => {
+      try {
+        const response = await api.get(
+          `/hospital/nearest?longitude=${initialCenter.longitude}&latitude=${initialCenter.latitude}`
+        );
+        setHospital(response.data.data);
+      } catch (error) {
+        console.log(error.response);
+      }
+    };
+
+    let initialCenter = {
+      longitude: '107.6081381',
+      latitude: '-6.903363',
+    };
 
     if (router.query && router.query.lat && router.query.long) {
       initialCenter = {
-        latitude: router.query.lat,
-        longitude: router.query.long,
+        latitude: `${router.query.lat}`,
+        longitude: `${router.query.long}`,
       };
     }
 
@@ -45,6 +62,7 @@ const FaskesSection = () => {
     const marker = draggableMarker(map, initialCenter);
 
     addMarkers(map, mockgeoJSON);
+    getHospital(initialCenter);
 
     mapRef.current = map;
     markerRef.current = marker;
@@ -124,10 +142,15 @@ const FaskesSection = () => {
           />
         </div>
         <div className='order-3 '>
-          <FaskesItem />
-          <FaskesItem />
-          <FaskesItem />
-          <FaskesItem />
+          {hospital &&
+            hospital.map(({ name, address, distance, thumbnail }) => (
+              <FaskesItem
+                name={name}
+                address={address}
+                distance={distance}
+                thumbnail={thumbnail}
+              />
+            ))}
         </div>
       </div>
     </div>

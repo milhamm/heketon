@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import api from '@lib/api';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 
 type AuthenticationType = {
   login: Function;
@@ -41,7 +41,16 @@ export const AuthenticationProvider = ({ children }) => {
       setLoading(false);
     };
 
+    const handleResetError = () => {
+      setError(null);
+    };
+
+    router.events.on('routeChangeStart', handleResetError);
     validate();
+
+    return () => {
+      router.events.off('routeChangeStart', handleResetError);
+    };
   }, []);
 
   const login = async (payload: LoginType) => {

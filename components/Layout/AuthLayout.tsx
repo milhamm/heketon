@@ -28,7 +28,7 @@ const AuthLayout = ({ children, meta }) => {
               </div>
             </div>
             <div className='flex-1 flex items-center justify-center'>
-              <div className='bg-white shadow-lg w-full max-w-lg px-12 lg:px-20 pt-12 pb-24 rounded-lg'>
+              <div className='bg-white shadow-lg w-full max-w-lg px-6 lg:px-20 pt-12 pb-24 rounded-lg'>
                 <Link href='/'>
                   <a>
                     <h2 className='font-bold font-primary text-center mb-8 text-2xl cursor-pointer border-b pb-6'>

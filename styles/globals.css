@@ -40,3 +40,8 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #b30000;
 }
+
+.DayPickerNavigation_button__horizontalDefault {
+  border-radius: 3px;
+  border: none;
+}
