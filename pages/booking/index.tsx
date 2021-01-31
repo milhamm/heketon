@@ -7,6 +7,7 @@ import withAuth from '@lib/withAuth';
 import Button from '@components/Button';
 
 const BookingItem = ({
+  id,
   date,
   name,
   facilies,
@@ -16,6 +17,9 @@ const BookingItem = ({
 }) => {
   return (
     <div className='border max-w-96 px-8 py-6'>
+      <h4 className='mb-4'>
+        Kode Booking: <span className='font-bold'>{id}</span>
+      </h4>
       <h1>{moment(date).format('DD MMMM YYYY')}</h1>
       <h4>{name}</h4>
       <div className='flex mt-8'>
@@ -68,14 +72,16 @@ const Booking = () => {
     <Layout>
       <div className='container mx-auto px-6 mb-36'>
         <h1 className='text-2xl font-bold mt-24 mb-12'>Jadwal Tes Kamu</h1>
-        {booking && booking.data ? (
+        {booking && booking.length > 0 ? (
           booking.map(
             ({
+              id,
               date,
               hospital: { name, facilies, longitude, latitude },
               total_person,
             }) => (
               <BookingItem
+                id={id}
                 date={date}
                 name={name}
                 facilies={facilies}

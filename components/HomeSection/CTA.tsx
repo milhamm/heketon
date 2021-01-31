@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Button from '@components/Button';
 
 const CTA = () => {
@@ -15,9 +16,13 @@ const CTA = () => {
           tempatmu. Kamu juga dapat booking jadwal tes agar kamu tidak perlu
           mengantri di lokasi tes
         </p>
-        <Button type='primary' className='mt-12'>
-          Mulai Cari Sekarang
-        </Button>
+        <Link href='/faskes'>
+          <a>
+            <Button type='primary' className='mt-12'>
+              Mulai Cari Sekarang
+            </Button>
+          </a>
+        </Link>
       </div>
     </div>
   );
