@@ -3,7 +3,7 @@ import React from 'react';
 const Disclaimer = () => {
   return (
     <div
-      className='bg-cheese w-full bg-disclaimer h-full bg-bottom-right-4 bg-no-repeat rounded-lg py-12 px-12 mb-12 lg:mb-32'
+      className='bg-cheese w-full lg:bg-disclaimer h-full bg-bottom-right-4 bg-no-repeat rounded-lg py-12 px-6 lg:px-12 mb-12 lg:mb-32'
       style={{ backgroundSize: '20%' }}
     >
       <h4 className='font-bold text-disclaimer text-4xl'>Peringatan</h4>

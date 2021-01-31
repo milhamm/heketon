@@ -11,12 +11,12 @@ type LayoutProps = {
 
 const Layout = ({ children, meta }: LayoutProps) => {
   return (
-    <>
+    <div className='min-h-screen relative'>
       <SEO meta={meta} />
       <Navbar />
-      <main>{children}</main>
+      <main className='pb-36'>{children}</main>
       <Footer />
-    </>
+    </div>
   );
 };
 

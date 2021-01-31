@@ -33,7 +33,6 @@ export const AuthenticationProvider = ({ children }) => {
       api.defaults.headers.Authorization = `Bearer ${token}`;
       try {
         const response = await api.get('/auth/validate');
-        console.log(response);
         setUser(response.data.data);
       } catch (error) {
         console.log(error.data);

@@ -96,3 +96,37 @@ export const toGeoJSON = (data) => {
     })),
   };
 };
+
+export const faq = [
+  {
+    title: 'Apakah kegunaan dari aplikasi ini?',
+    description:
+      'Aplikasi ini dapat membantumu untuk mencari lokasi tes covid terdekat dari lokasimu berada',
+  },
+  {
+    title: 'Apakah aplikasi ini aman digunakan?',
+    description:
+      'Ya, tentu saja. Kami sangat menjaga keamanan dari aplikasi ini',
+  },
+  {
+    title: 'Apakah data diri saya aman?',
+    description:
+      'Tentu saja, kami tidak akan menyebarkan data dirimu. Dan kami juga sangat menjaga keamanan dari data diri kamu',
+  },
+  {
+    title: 'Bagaimana jika saya ingin melakukan tes di hari yang sama?',
+    description:
+      'Anda dapat melakukan tes kapanpun selama fasilitas kesehatan yang anda pilih (klinik ataupun rumah sakit), memiliki jadwal yang sama',
+  },
+  {
+    title:
+      'Jika saya sedang dinyatakan positif Covid-19, apakah saya dapat melakukan tes disini?',
+    description:
+      'Anda TIDAK dapat melakukan tes dengan website ini. Dikarenakan fasilitas kesehatan yang kami sediakan adalah fasilitas pencegahan Covid-19. Untuk selanjutnya, anda dapat menghubungi hotline Covid 119',
+  },
+  {
+    title: 'Bagaimana setelah tes, saya terdeteksi positif?',
+    description:
+      'Anda dapat mengikuti arahan yang diberikan oleh fasilitas kesehatan tersebut',
+  },
+];

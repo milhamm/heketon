@@ -1,9 +1,10 @@
 import Button from '@components/Button';
+import Link from 'next/link';
 import React from 'react';
 
 const Footer = () => {
   return (
-    <div className='h-full bg-primary'>
+    <div className='h-auto bg-primary w-full absolute bottom-0'>
       <div className='container mx-auto flex flex-col lg:flex-row py-8 px-6 justify-between'>
         <div className='flex-1'>
           <span className='font-bold text-3xl'>
@@ -11,21 +12,37 @@ const Footer = () => {
           </span>
         </div>
         <div className='flex-1 ml-0 lg:ml-8'>
-          <div className='py-1 cursor-pointer'>
-            <span className='text-white'>Home</span>
-          </div>
+          <Link href='/'>
+            <a>
+              <div className='py-1 cursor-pointer'>
+                <span className='text-white'>Home</span>
+              </div>
+            </a>
+          </Link>
 
-          <div className='py-1 cursor-pointer'>
-            <span className='text-white'>Cari</span>
-          </div>
-          <div className='py-1 cursor-pointer'>
-            <span className='text-white'>FAQ</span>
-          </div>
+          <Link href='/faskes'>
+            <a>
+              <div className='py-1 cursor-pointer'>
+                <span className='text-white'>Cari</span>
+              </div>
+            </a>
+          </Link>
+          <Link href='/faq'>
+            <a>
+              <div className='py-1 cursor-pointer'>
+                <span className='text-white'>FAQ</span>
+              </div>
+            </a>
+          </Link>
         </div>
         <div className='flex-1 ml-0 lg:ml-8'>
-          <div className='py-1 cursor-pointer'>
-            <span className='text-white'>Tentang Kami</span>
-          </div>
+          <Link href='/us'>
+            <a>
+              <div className='py-1 cursor-pointer'>
+                <span className='text-white'>About Us</span>
+              </div>
+            </a>
+          </Link>
         </div>
       </div>
     </div>
