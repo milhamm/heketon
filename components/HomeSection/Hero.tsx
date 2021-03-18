@@ -5,6 +5,7 @@ import TextInput from '@components/Form/TextInput';
 import Button from '@components/Button';
 import LocationList from '@components/LocationList';
 import useGeocode from '@hooks/useGeocode';
+import axios from 'axios';
 
 const Hero = () => {
   const [search, setSearch] = useState('');
@@ -29,6 +30,12 @@ const Hero = () => {
       );
     }
   }, [pickedLocation]);
+
+  useEffect(() => {
+    axios.get('/api/covid').then((data) => {
+      console.log(data.data);
+    });
+  }, []);
 
   return (
     <div className='h-full flex pt-24 gap-8 mb-16 lg:mb-32'>
